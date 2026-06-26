@@ -45,6 +45,7 @@
     selectedDate: toDateKey(new Date()),
     monthDate: startOfMonth(new Date())
   };
+  let toastTimer = null;
 
   ingestHashData();
   state.data.events = normalizeEvents(state.data.events);
@@ -711,7 +712,6 @@
     return JSON.parse(decodeURIComponent(escape(atob(value))));
   }
 
-  let toastTimer = null;
   function showToast(message) {
     els.toast.textContent = message;
     els.toast.classList.add("is-visible");

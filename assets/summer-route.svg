@@ -1,0 +1,21 @@
+<svg width="720" height="420" viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="暑期路线插画">
+  <rect width="720" height="420" rx="36" fill="#E8F7EF"/>
+  <path d="M68 312C145 242 203 339 278 268C348 201 432 255 499 183C552 126 603 137 660 96" stroke="#FF8A65" stroke-width="18" stroke-linecap="round" stroke-dasharray="2 34"/>
+  <circle cx="150" cy="114" r="54" fill="#FFE39A"/>
+  <path d="M150 39V18M150 210v-21M75 114H54M246 114h-21M96 60 81 45M219 187l-15-15M204 60l15-15M81 187l15-15" stroke="#F7B733" stroke-width="12" stroke-linecap="round"/>
+  <rect x="82" y="230" width="138" height="112" rx="18" fill="#FFFFFF" stroke="#BBD8CC" stroke-width="8"/>
+  <path d="M82 270h138" stroke="#BBD8CC" stroke-width="8"/>
+  <path d="M118 212v34M184 212v34" stroke="#1C8F6A" stroke-width="14" stroke-linecap="round"/>
+  <rect x="111" y="292" width="28" height="26" rx="7" fill="#2F80ED"/>
+  <rect x="162" y="292" width="28" height="26" rx="7" fill="#FF8A65"/>
+  <path d="M342 91c51 0 92 41 92 92 0 68-92 154-92 154s-92-86-92-154c0-51 41-92 92-92Z" fill="#1C8F6A"/>
+  <circle cx="342" cy="183" r="39" fill="#FFFFFF"/>
+  <path d="M330 183h24M342 171v24" stroke="#1C8F6A" stroke-width="10" stroke-linecap="round"/>
+  <rect x="470" y="248" width="132" height="78" rx="18" fill="#FFFFFF" stroke="#BBD8CC" stroke-width="8"/>
+  <path d="M492 248l27-42h34l27 42" stroke="#BBD8CC" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="508" cy="334" r="17" fill="#30444B"/>
+  <circle cx="566" cy="334" r="17" fill="#30444B"/>
+  <path d="M520 280h34" stroke="#2F80ED" stroke-width="10" stroke-linecap="round"/>
+  <path d="M620 260c21 0 38 17 38 38s-17 38-38 38-38-17-38-38 17-38 38-38Z" fill="#FFE39A"/>
+  <path d="m608 298 9 9 18-22" stroke="#1C8F6A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

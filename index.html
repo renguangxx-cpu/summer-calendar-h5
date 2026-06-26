@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7fbf7" />
+    <meta name="format-detection" content="telephone=yes,address=yes,email=no" />
+    <title>暑期日历</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="header-copy">
+          <p class="eyebrow">暑期接送日历</p>
+          <h1 id="child-name">小朋友</h1>
+          <p id="date-line" class="date-line"></p>
+        </div>
+        <img class="header-art" src="./assets/summer-route.svg" alt="" aria-hidden="true" />
+      </header>
+
+      <main>
+        <section class="today-band" aria-labelledby="today-title">
+          <div>
+            <p class="section-kicker">下一项</p>
+            <h2 id="today-title">今天安排</h2>
+          </div>
+          <div id="next-event" class="next-event"></div>
+        </section>
+
+        <nav class="mode-tabs" aria-label="视图切换">
+          <button type="button" class="tab-button is-active" data-view="today">今天</button>
+          <button type="button" class="tab-button" data-view="calendar">月历</button>
+          <button type="button" class="tab-button" data-view="list">清单</button>
+          <button type="button" class="tab-button" data-view="manage">管理</button>
+        </nav>
+
+        <section class="tools-row" aria-label="筛选和搜索">
+          <div class="filter-group" id="type-filters">
+            <button type="button" class="filter-chip is-active" data-filter="all">全部</button>
+            <button type="button" class="filter-chip" data-filter="course">课程</button>
+            <button type="button" class="filter-chip" data-filter="trip">出行</button>
+            <button type="button" class="filter-chip" data-filter="family">家庭</button>
+            <button type="button" class="filter-chip" data-filter="todo">提醒</button>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="search-input" type="search" placeholder="搜索地点、课程、老师" autocomplete="off" />
+          </label>
+        </section>
+
+        <section id="view-today" class="view is-active" aria-labelledby="pickup-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">接送清单</p>
+              <h2 id="pickup-title">按时间走</h2>
+            </div>
+            <button type="button" class="icon-button" data-action="add-event" aria-label="新增安排" title="新增安排">＋</button>
+          </div>
+          <div id="today-list" class="event-list"></div>
+        </section>
+
+        <section id="view-calendar" class="view" aria-labelledby="calendar-title">
+          <div class="month-toolbar">
+            <button type="button" class="icon-button" data-action="prev-month" aria-label="上个月" title="上个月">‹</button>
+            <h2 id="calendar-title"></h2>
+            <button type="button" class="icon-button" data-action="next-month" aria-label="下个月" title="下个月">›</button>
+          </div>
+          <div class="weekday-grid" aria-hidden="true">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+          </div>
+          <div id="calendar-grid" class="calendar-grid"></div>
+          <div class="section-heading compact">
+            <div>
+              <p class="section-kicker">当天详情</p>
+              <h2 id="selected-date-title"></h2>
+            </div>
+          </div>
+          <div id="selected-day-list" class="event-list"></div>
+        </section>
+
+        <section id="view-list" class="view" aria-labelledby="list-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">全部安排</p>
+              <h2 id="list-title">暑期日程</h2>
+            </div>
+            <button type="button" class="ghost-button" data-action="export-ics">导出日历</button>
+          </div>
+          <div id="all-list" class="event-list"></div>
+        </section>
+
+        <section id="view-manage" class="view" aria-labelledby="manage-title">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">家庭同步</p>
+              <h2 id="manage-title">管理</h2>
+            </div>
+          </div>
+          <div class="manage-grid">
+            <form id="profile-form" class="form-panel">
+              <label>
+                孩子名字
+                <input name="childName" type="text" autocomplete="off" />
+              </label>
+              <label>
+                家长电话
+                <input name="primaryPhone" type="tel" autocomplete="tel" />
+              </label>
+              <button type="submit" class="primary-button">保存资料</button>
+            </form>
+
+            <div class="form-panel">
+              <button type="button" class="primary-button" data-action="add-event">新增安排</button>
+              <button type="button" class="ghost-button" data-action="copy-share-link">复制微信分享链接</button>
+              <button type="button" class="ghost-button" data-action="export-json">导出数据</button>
+              <label class="file-button">
+                导入数据
+                <input id="json-import" type="file" accept="application/json" />
+              </label>
+              <button type="button" class="danger-button" data-action="reset-data">恢复默认行程</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="event-modal" class="event-modal">
+      <form id="event-form" method="dialog">
+        <div class="modal-heading">
+          <h2 id="modal-title">新增安排</h2>
+          <button type="button" class="icon-button" data-action="close-modal" aria-label="关闭" title="关闭">×</button>
+        </div>
+        <input name="id" type="hidden" />
+        <div class="form-grid">
+          <label>
+            类型
+            <select name="type">
+              <option value="course">课程</option>
+              <option value="trip">出行</option>
+              <option value="family">家庭</option>
+              <option value="todo">提醒</option>
+            </select>
+          </label>
+          <label>
+            标题
+            <input name="title" type="text" required autocomplete="off" />
+          </label>
+          <label>
+            日期
+            <input name="date" type="date" required />
+          </label>
+          <label>
+            开始
+            <input name="start" type="time" required />
+          </label>
+          <label>
+            结束
+            <input name="end" type="time" />
+          </label>
+          <label>
+            建议出发
+            <input name="leaveTime" type="time" />
+          </label>
+          <label>
+            地点
+            <input name="location" type="text" autocomplete="off" />
+          </label>
+          <label>
+            地址
+            <input name="address" type="text" autocomplete="street-address" />
+          </label>
+          <label>
+            联系人
+            <input name="contactName" type="text" autocomplete="off" />
+          </label>
+          <label>
+            电话
+            <input name="contactPhone" type="tel" autocomplete="tel" />
+          </label>
+          <label>
+            物品
+            <input name="bag" type="text" placeholder="水杯、书包、泳衣" autocomplete="off" />
+          </label>
+          <label class="full-span">
+            备注
+            <textarea name="notes" rows="3"></textarea>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="danger-button" data-action="delete-event">删除</button>
+          <span></span>
+          <button type="button" class="ghost-button" data-action="close-modal">取消</button>
+          <button type="submit" class="primary-button">保存</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="./schedule-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

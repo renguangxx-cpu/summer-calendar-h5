@@ -1,0 +1,9 @@
+{
+  "name": "暑期日历",
+  "short_name": "暑期日历",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7fbf7",
+  "theme_color": "#f7fbf7",
+  "lang": "zh-CN"
+}

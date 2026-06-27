@@ -95,6 +95,9 @@
   }
 
   function shouldUseDefaultOverSaved(rawData, savedData) {
+    if (rawData && rawData.dataVersion && rawData.dataVersion !== DEFAULT_DATA_VERSION) {
+      return String(rawData.dataVersion).startsWith("2026-summer-");
+    }
     if (rawData && rawData.dataVersion) return false;
     return savedData.events.some((event) =>
       ["游泳提高班", "创意美术课", "数学思维课", "科学实验营"].includes(event.title)
